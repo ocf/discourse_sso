@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+exec 2>&1
+
+cd /opt/discourse_sso
+exec gunicorn -b 127.0.0.1:8000 app:app
