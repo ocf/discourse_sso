@@ -16,16 +16,16 @@ COPY discourse_pam /etc/pam.d/discourse
 
 RUN mkdir -p /opt/discourse_sso
 
+RUN echo "ocfstaff\nopstaff" > /opt/discourse_sso/allowed-groups
+
 COPY requirements.txt /opt/discourse_sso/requirements.txt
 RUN pip3 install -r /opt/discourse_sso/requirements.txt
+
+COPY --chown=nobody:nogroup app.py /opt/discourse_sso
+COPY --chown=nobody:nogroup services /opt/discourse_sso/services
 
 RUN chown nobody:nogroup /opt/discourse_sso
 WORKDIR /opt/discourse_sso
 USER nobody
-
-RUN echo "ocfstaff\nopstaff" > /opt/discourse_sso/allowed-groups
-
-COPY --chown=nobody:nogroup app.py /opt/discourse_sso
-COPY --chown=nobody:nogroup services /opt/discourse_sso/services
 
 CMD ["runsvdir", "/opt/discourse_sso/services"]
