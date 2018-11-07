@@ -1,4 +1,4 @@
-# Restrict access to ocfstaff and opstaff
+# Restrict access to groups specified in allowed-groups, currently ocfstaff and opstaff
 
 @include common-auth
 @include common-account
