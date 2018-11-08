@@ -8,7 +8,6 @@ RUN apt-get update \
         python3-pip \
         python3-setuptools \
         runit \
-    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 COPY services/nginx/nginx.conf /etc/nginx
