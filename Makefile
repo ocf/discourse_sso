@@ -7,6 +7,8 @@ RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 3 )))
 
 .PHONY: dev
 dev: cook-image
+	mkdir -p ${PWD}/keys
+	touch ${PWD}/keys/secret
 	docker run --rm -p $(RANDOM_PORT):8080 \
 		-v ${PWD}/keys:/opt/discourse_sso/keys \
 		-ti $(DOCKER_TAG)

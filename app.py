@@ -8,10 +8,7 @@ from flask import abort, Flask, redirect, request
 
 app = Flask(__name__)
 
-try:
-    SECRET = open('keys/secret').read().strip()
-except FileNotFoundError:
-    print('No secret file found')
+SECRET = open('keys/secret').read().strip()
 
 def secret_hmac(msg):
     return hmac.new(SECRET, msg, digestmod=hashlib.sha256).digest()
